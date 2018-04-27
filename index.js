@@ -10,29 +10,29 @@ const app = actionssdk({debug: true});
 
 function mainIntent(conv, input) {
     conv.data={ok: 1};
-    frase="Incominciamo bene!";
+    frase="Start well";
     conv.ask(frase);
 }
 
 function dialoga(conv, input) {
-    if (input === 'fine') {
-        return conv.close('Arrivederci!');
+    if (input === 'bye') {
+        return conv.close('Goodbye!');
     }
-    var frase="Sono io";
+    var frase="I am Manu";
     if(conv.data && conv.data.ok) {
         switch(conv.data.ok)
         {
-            case 1: frase="Ecco la frase 1";
+            case 1: frase="Here is sentence 1";
             break;
-            case 2: frase="Pronuncio frase 2";
+            case 2: frase="I select sentence 2";
             break;
-            case 3: frase="Ecco frase 3";
+            case 3: frase="Now go for sentence 3";
         }
         conv.data = {ok: conv.data.ok+1};
     }
     else {
         conv.data={ok: 4};
-        frase="Ecco la frase n";
+        frase="Go on with sentence 4";
     }
     conv.ask(frase);
 }
