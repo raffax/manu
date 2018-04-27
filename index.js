@@ -7,7 +7,17 @@
 //------------------------------------------------------------------------
 const {actionssdk} = require('actions-on-google');
 const app = actionssdk({debug: true});
+
 function mainIntent(conv, input) {
+    conv.data={ok: 1};
+    frase="Incominciamo bene!";
+    conv.ask(frase);
+}
+
+function dialoga(conv, input) {
+    if (input === 'fine') {
+        return conv.close('Arrivederci!');
+    }
     var frase="Sono io";
     if(conv.data && conv.data.ok) {
         switch(conv.data.ok)
@@ -21,11 +31,13 @@ function mainIntent(conv, input) {
         conv.data = {ok: conv.data.ok+1};
     }
     else {
-        conv.data={ok: 1};
-        frase="Incominciamo bene!";
+        conv.data={ok: 4};
+        frase="Ecco la frase n";
     }
     conv.ask(frase);
 }
+
 const actionMap = new Map();
 actionMap.set(app.StandardIntents.MAIN, mainIntent);
+actionMap.set(app.StandardIntents.TEXT, dialoga);
 app.handleRequest(actionMap);
