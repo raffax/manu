@@ -1,0 +1,19 @@
+{
+  "name": "manu",
+  "version": "1.0.0",
+  "description": "virtual assistant google actions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "manu"
+  },
+  "author": "RC",
+  "license": "MIT",
+  "dependencies": {
+    "actions-on-google": "^2.0.1"
+  }
+}
