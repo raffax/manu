@@ -58,6 +58,7 @@ var assistant = watson.conversation({
 //  Begin conversation with a null text
 //---------------------------------------------------------------
 app.intent('actions.intent.MAIN', (conv) => {
+    console.log("PARTO");
     assistant.message({
         workspace_id: workspace_id,
         input: { text: "" },
@@ -66,6 +67,7 @@ app.intent('actions.intent.MAIN', (conv) => {
 });
 
 app.intent('actions.intent.TEXT', (conv, input) => { 
+    console.log("intent: TEXT");
     assistant.message({
         workspace_id: workspace_id,
         input: { text: input },
@@ -79,7 +81,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
   //----------------------------------------------------------
   function processResponse(err, response) {
     console.log("MISS-MANU");
-    console.log("response="+JSON.stringify(response));
+    console.log("processResponse="+JSON.stringify(response));
     frase_da_pronunciare="";
     if (err) {
       console.log("error: ",err); // something went wrong
