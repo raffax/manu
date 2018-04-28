@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
 
 const app = actionssdk({debug: true});
-console.log("MANU conversation: "+ JSON.stringify(app.conversation));
+console.log("MANU conversation data: "+ JSON.stringify(app.conversation.data));
+console.log("MANU input: "+JSON.stringify(app.conversation.input);
 app.intent('actions.intent.MAIN', (conv) => {
     conv.data={ok: 1};
     frase="Hello, I am miss Manu, I help you in performing plant inspections";
