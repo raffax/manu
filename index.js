@@ -7,11 +7,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
 
-const app = actionssdk({debug: true});
-if(app.conversation && app.conversation.input) console.log("MANU input: " + JSON.stringify(app.conversation.input.raw));
-if(app.conversation.user.userStorage) 
+const app = actionssdk({debug: true, request:request,response:response});
+if(app.request && app.request.input) console.log("MANU input: " + JSON.stringify(app.request.input));
+if(app.request && app.request.user) 
 {
-	console.log("MANU data: "+JSON.stringify(aapp.conversation.user.userStorage));
+	console.log("MANU data: "+JSON.stringify(aapp.conversation.user);
 }
 else {
 	console.log("MANU data inesistente");
