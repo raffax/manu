@@ -7,7 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
 
-const app = actionssdk({debug: true, request:request,response:response});
+const app = actionssdk({debug: true});
 if(app.request && app.request.input) console.log("MANU input: " + JSON.stringify(app.request.input));
 if(app.request && app.request.user) 
 {
