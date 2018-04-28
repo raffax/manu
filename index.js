@@ -8,7 +8,15 @@ const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
 
 const app = actionssdk({debug: true});
-console.log("MANU input: " + JSON.stringify(app.conversation));
+console.log("MANU input: " + JSON.stringify(app.conversation.Request.inputs[0].rawinputs[0].query));
+if(app.conversation.Request.conversation.conversationToken && 
+	app.conversation.Request.conversation.conversationToken.data) 
+{
+	console.log("MANU data: "+JSON.stringify(app.conversation.Request.conversation.conversationToken.data));
+}
+else {
+	console.log("MANU data inesistente");
+}
 app.intent('actions.intent.MAIN', (conv) => {
     conv.data={ok: 1};
     frase="Hello, I am miss Manu, I help you in performing plant inspections";
