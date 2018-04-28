@@ -1,7 +1,5 @@
 //------------------------------------------------------------------------
 // Google Actions app for voice interaction on smartphone 
-// Text dialog is provided by Watson assistant 
-// Domain : EGP inspections to wind farm
 //------------------------------------------------------------------------
 // Initialize Google Actions
 //------------------------------------------------------------------------
@@ -13,7 +11,7 @@ const app = actionssdk({debug: true});
 
 app.intent('actions.intent.MAIN', (conv) => {
     conv.data={ok: 1};
-    frase="Start well";
+    frase="Hello, I am miss Manu, I help you in performing plant inspections";
     conv.ask(frase);
   });
   
@@ -21,7 +19,7 @@ app.intent('actions.intent.TEXT', (conv, input) => {
     if (input === 'bye') {
       return conv.close('Goodbye!');
     }
-    var frase="I am Manu";
+    var frase="Welcome to my simple action test";
     if(conv.data && conv.data.ok) {
         switch(conv.data.ok)
         {
@@ -30,12 +28,10 @@ app.intent('actions.intent.TEXT', (conv, input) => {
             case 2: frase="I select sentence 2";
             break;
             case 3: frase="Now go for sentence 3";
+            break;
+            default: frase="Now I reach the level number "+conv.data.ok;
         }
         conv.data = {ok: conv.data.ok+1};
-    }
-    else {
-        conv.data={ok: 4};
-        frase="Go on with sentence 4";
     }
     conv.ask(frase);  
 });
