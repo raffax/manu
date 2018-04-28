@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
 
 const app = actionssdk({debug: true});
-console.log("MANU input: " + JSON.stringify(app.conversation.input);
+console.log("MANU input: " + JSON.stringify(app.conversation.input));
 if(app.conversation.data) {
     console.log("MANU conversation data: "+ JSON.stringify(app.conversation.data));
 }
