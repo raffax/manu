@@ -5,18 +5,21 @@
 //------------------------------------------------------------------------
 // Initialize Google Actions
 //------------------------------------------------------------------------
+const express = require('express');
+const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
+
 const app = actionssdk({debug: true});
 
-function mainIntent(conv, input) {
+app.intent('actions.intent.MAIN', (conv) => {
     conv.data={ok: 1};
     frase="Start well";
     conv.ask(frase);
-}
-
-function dialoga(conv, input) {
+  });
+  
+app.intent('actions.intent.TEXT', (conv, input) => {
     if (input === 'bye') {
-        return conv.close('Goodbye!');
+      return conv.close('Goodbye!');
     }
     var frase="I am Manu";
     if(conv.data && conv.data.ok) {
@@ -34,10 +37,7 @@ function dialoga(conv, input) {
         conv.data={ok: 4};
         frase="Go on with sentence 4";
     }
-    conv.ask(frase);
-}
+    conv.ask(frase);  
+});
 
-const actionMap = new Map();
-actionMap.set(app.StandardIntents.MAIN, mainIntent);
-actionMap.set(app.StandardIntents.TEXT, dialoga);
-app.handleRequest(actionMap);
+express().use(bodyParser.json(), app).listen(process.env.PORT || 3000);
