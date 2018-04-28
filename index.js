@@ -9,7 +9,7 @@ const {actionssdk} = require('actions-on-google');
 var conversation=null;
 var ingresso=null;
 
-const app = actionssdk({debug: true});
+const app = actionssdk({debug: false});
 app.intent('actions.intent.MAIN', (conv) => {
     conversation=conv;
     conv.data={ok: 1};
