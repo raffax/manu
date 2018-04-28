@@ -8,10 +8,10 @@ const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
 
 const app = actionssdk({debug: true});
-if(app.request && app.request.input) console.log("MANU input: " + JSON.stringify(app.request.input));
-if(app.request && app.request.user) 
+if(app.request && app.request.input) console.log("MANU input: " + app.request.input);
+if(app.request && app.request.user && app.request.userStorage) 
 {
-	console.log("MANU data: "+JSON.stringify(app.request.user));
+	console.log("MANU data: "+app.request.userStorage);
 }
 else {
 	console.log("MANU data inesistente");
