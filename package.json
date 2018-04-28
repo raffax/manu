@@ -1,17 +1,20 @@
 {
-  "name": "gwatson",
+  "name": "manu",
   "version": "1.0.0",
-  "description": "google assistant voice for watson bot",
+  "description": "virtual assistant google actions",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "manu"
   },
   "author": "RC",
   "license": "MIT",
   "dependencies": {
     "actions-on-google": "^2.0.1",
-    "axios": "^0.18.0",
-    "express": "^4.16.3",
-    "watson-developer-cloud": "^3.4.0"
+    "express": "^4.16.3"
   }
 }
