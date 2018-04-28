@@ -11,7 +11,7 @@ const app = actionssdk({debug: true, request:request,response:response});
 if(app.request && app.request.input) console.log("MANU input: " + JSON.stringify(app.request.input));
 if(app.request && app.request.user) 
 {
-	console.log("MANU data: "+JSON.stringify(aapp.conversation.user);
+	console.log("MANU data: "+JSON.stringify(app.request.user));
 }
 else {
 	console.log("MANU data inesistente");
