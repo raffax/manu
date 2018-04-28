@@ -78,6 +78,8 @@ app.intent('actions.intent.TEXT', (conv, input) => {
   //    until inspection ends
   //----------------------------------------------------------
   function processResponse(err, response) {
+    console.log("MISS-MANU");
+    console.log("response="+JSON.stringify(response));
     frase_da_pronunciare="";
     if (err) {
       console.log("error: ",err); // something went wrong
