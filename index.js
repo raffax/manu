@@ -8,7 +8,9 @@ var axios = require('axios');                       // manages rest api calls
 
 const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
+console.log("Initializing google");
 const app = actionssdk({debug: true});
+console.log("initialized google")
 //-------------------------------------------------------------------------------------
 // The checklist varianle contains all controls of the inspection.
 // It is for demo purpose only and it should be managed as collection of
@@ -47,6 +49,7 @@ var initialContext={
 //---------------------------------------
 // define assistant credentials
 //---------------------------------------
+console.log("PRIMA DI inizializzare assistant");
 var workspace_id = '197ccaba-7914-46d3-9e84-d50eda4ea223';
 var assistant = watson.conversation({
     username: 'b5da2fc4-f1cd-485a-a0da-a4d035f896a1',
@@ -54,6 +57,8 @@ var assistant = watson.conversation({
     version: 'v1',
     version_date: '2018-02-16'
 });
+console.log("assistant initialized");
+
 //---------------------------------------------------------------
 //  Begin conversation with a null text
 //---------------------------------------------------------------
