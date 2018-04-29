@@ -47,7 +47,7 @@ function prova(indi)
                   break;
                   default: frase="Now I reach the level number "+conversation.data.ok;
               }
-              conversation.data = {ok: conv.data.ok+1};
+              conversation.data = {ok: conversation.data.ok+1};
           }      
     }
     conversation.ask(frase);
