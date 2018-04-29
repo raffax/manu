@@ -37,7 +37,7 @@ function prova(indi)
           }
           frase="Welcome to my simple action test";
           if(conversation.data && conversation.data.ok) {
-              switch(conv.data.ok)
+              switch(conversation.data.ok)
               {
                   case 1: frase="Here is sentence 1";
                   break;
