@@ -121,7 +121,6 @@ function altre_conversazioni(conv,input) {
                     }
                 }
                 else {
-                    if(respo)
                     for(var i = 0; i<response.output.text.length;i++) {
                         frase_da_pronunciare=response.output.text[i]+". ";        
                     }
