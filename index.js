@@ -116,11 +116,12 @@ function altre_conversazioni(conv,input) {
                 if(response.output.text.length>0 && response.output.text[0].indexOf('_action')>=0) {
                     var x = response.output.text[0].split(' ')[1];
                     if(x.indexOf('last_inspection_step')>=0) {
-                        frase_da_pronunciare='During last inspection this control was rated '+previous[nn];
+                        frase_da_pronunciare='During last inspection this control was rated '+previous[response.context.nn];
                         console.log(frase_da_pronunciare);
                     }
                 }
                 else {
+                    if(respo)
                     for(var i = 0; i<response.output.text.length;i++) {
                         frase_da_pronunciare=response.output.text[i]+". ";        
                     }
@@ -135,7 +136,7 @@ function altre_conversazioni(conv,input) {
                         response.context.nn++;
                         if(response.context.nn<checklist.length) {  // go to next control 
         //                response.context.ispezione_iniziata=1;
-                            response.context.current_step=checklist[nn];                
+                            response.context.current_step=checklist[response.context.nn];                
                         }
                         else {  // finish
                             conv.close('Goodbye!');
@@ -147,8 +148,21 @@ function altre_conversazioni(conv,input) {
                     conv.close('Goodbye!');
                     resolve();
                 }
-                conv.data.ws_context=response.context;        
-                conv.ask(frase_da_pronunciare);
+                conv.data.ws_context=response.context;
+                if(frase_da_pronunciare.indexOf('photo')>=0 || frase_da_pronunciare.indexOf("picture")>=0) {
+                    conv.ask(new BasicCard({
+                        text: frase_da_pronunciare,
+                        subtitle: 'This is a subtitle',
+                        title: 'Title: this is a title',
+                        buttons: new Button({
+                          title: 'Take Photo',
+                          url: 'https://assistant.google.com/',
+                        })
+                      }));      
+                }
+                else {
+                    conv.ask(frase_da_pronunciare);
+                }
                 resolve();
             }                
         });
