@@ -4,7 +4,6 @@
 //------------------------------------------------------------------------
 var watson = require('watson-developer-cloud');     // watson sdk
 var util=require('util');
-var Promise = require('promise');
 
 const express = require('express');
 const bodyParser = require('body-parser');
