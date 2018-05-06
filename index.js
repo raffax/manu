@@ -3,8 +3,7 @@
 //  Vocal interaction powered by Google Actions
 //------------------------------------------------------------------------
 var watson = require('watson-developer-cloud');     // watson sdk
-var axios = require('axios');                       // manages rest api calls
-//var prompt = require('prompt-sync')();              // user interaction
+const express = require('express');
 
 const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
