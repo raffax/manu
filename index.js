@@ -1,3 +1,5 @@
+import { BasicCard } from 'actions-on-google';
+
 //------------------------------------------------------------------------
 //  Watson assistant for inspections.
 //  Vocal interaction powered by Google Actions
@@ -45,8 +47,7 @@ var initialContext={
     nn:0
 };
 
-var bcard=new BasicCard();
-var bu = new Button();
+
 //---------------------------------------
 // define assistant credentials
 //---------------------------------------
@@ -96,14 +97,17 @@ function prima_conversazione(conv) {
 
 app.intent('actions.intent.TEXT', (conv, input) => { 
     console.log("intent: TEXT");
-    return altre_conversazioni(conv,input);
+    var bcard=new BasicCard();
+    var bu = new Button();
+    bcard.buttons=[bu];
+    return altre_conversazioni(conv,input,bcard);
 });
   //----------------------------------------------------------
   //    FUNCTION PROCESSRESPONSE
   //    Process the conversation response and continue
   //    until inspection ends
   //----------------------------------------------------------
-function altre_conversazioni(conv,input) {
+function altre_conversazioni(conv,input,bcard) {
     return new Promise (function (resolve,reject) {  
         assistant.message({
             workspace_id: workspace_id,
@@ -153,9 +157,8 @@ function altre_conversazioni(conv,input) {
                 if(frase_da_pronunciare.indexOf('photo')>=0 || frase_da_pronunciare.indexOf("picture")>=0) {
                     bcard.text=frase_da_pronunciare;
                     bcard.title='Action required';
-                    bu.text="Take Photo";
-                    bu.url='https://assistant.google.com/';
-                    bcard.buttons=[bu];                    
+                    bcard.buttons[0].text="Take Photo";
+                    bcard.buttons[0].url='https://assistant.google.com/';                    
                     conv.ask(bcard);
                 }
                 else {
