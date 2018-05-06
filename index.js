@@ -1,5 +1,3 @@
-import { BasicCard } from 'actions-on-google';
-
 //------------------------------------------------------------------------
 //  Watson assistant for inspections.
 //  Vocal interaction powered by Google Actions
