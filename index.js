@@ -33,8 +33,6 @@ var last_date='May 18, 2017';
 var nn=0;   // pointer to current checklist step (replaced by response.context.nn)
 var frase_da_pronunciare="";
 var ws_context=null;
-var g_conversation=null;
-var g_input=null;
 //---------------------------------------------
 // initialize dialog context variables
 //---------------------------------------------
@@ -66,7 +64,6 @@ var watsonPromise = util.promisify(assistant.message.bind(assistant));
 //  Begin conversation with a null text
 //---------------------------------------------------------------
 app.intent('actions.intent.MAIN', (conv) => {
-    console.log("PARTO");    
     watsonPromise({
         workspace_id: workspace_id,
         input: { text: "" },
@@ -80,6 +77,7 @@ app.intent('actions.intent.MAIN', (conv) => {
         conv.ask(frase_da_pronunciare);
     })
     .catch(function(err) {
+        console.log("Error "+err);
 	    return conv.close('Sorry, an error occurred. Goodbye!');
     })
 });
