@@ -45,6 +45,8 @@ var initialContext={
     nn:0
 };
 
+var bcard=new BasicCard();
+var bu = new Button();
 //---------------------------------------
 // define assistant credentials
 //---------------------------------------
@@ -149,15 +151,12 @@ function altre_conversazioni(conv,input) {
                 }
                 conv.data.ws_context=response.context;
                 if(frase_da_pronunciare.indexOf('photo')>=0 || frase_da_pronunciare.indexOf("picture")>=0) {
-                    conv.ask(new BasicCard({
-                        text: frase_da_pronunciare,
-                        subtitle: 'This is a subtitle',
-                        title: 'Title: this is a title',
-                        buttons: new Button({
-                          title: 'Take Photo',
-                          url: 'https://assistant.google.com/',
-                        })
-                      }));      
+                    bcard.text=frase_da_pronunciare;
+                    bcard.title='Action required';
+                    bu.text="Take Photo";
+                    bu.url='https://assistant.google.com/';
+                    bcard.buttons=[bu];                    
+                    conv.ask(bcard);
                 }
                 else {
                     conv.ask(frase_da_pronunciare);
