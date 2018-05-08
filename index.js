@@ -45,12 +45,11 @@ var initialContext={
     nn:0
 };
 
-
 //---------------------------------------
 // define assistant credentials
 //---------------------------------------
 console.log("PRIMA DI inizializzare assistant");
-var workspace_id = '197ccaba-7914-46d3-9e84-d50eda4ea223';
+var workspace_id = '5e22a66e-1784-4b20-9d9c-6eeced59c98c';
 var assistant = watson.conversation({
     username: 'b5da2fc4-f1cd-485a-a0da-a4d035f896a1',
     password: 'gnkHoHSTNuiN',
@@ -95,17 +94,14 @@ function prima_conversazione(conv) {
 
 app.intent('actions.intent.TEXT', (conv, input) => { 
     console.log("intent: TEXT");
-    var bcard=new BasicCard();
-    var bu = new Button();
-    bcard.buttons=[bu];
-    return altre_conversazioni(conv,input,bcard);
+    return altre_conversazioni(conv,input);
 });
   //----------------------------------------------------------
   //    FUNCTION PROCESSRESPONSE
   //    Process the conversation response and continue
   //    until inspection ends
   //----------------------------------------------------------
-function altre_conversazioni(conv,input,bcard) {
+function altre_conversazioni(conv,input) {
     return new Promise (function (resolve,reject) {  
         assistant.message({
             workspace_id: workspace_id,
@@ -152,16 +148,7 @@ function altre_conversazioni(conv,input,bcard) {
                     resolve();
                 }
                 conv.data.ws_context=response.context;
-                if(frase_da_pronunciare.indexOf('photo')>=0 || frase_da_pronunciare.indexOf("picture")>=0) {
-                    bcard.text=frase_da_pronunciare;
-                    bcard.title='Action required';
-                    bcard.buttons[0].text="Take Photo";
-                    bcard.buttons[0].url='https://assistant.google.com/';                    
-                    conv.ask(bcard);
-                }
-                else {
-                    conv.ask(frase_da_pronunciare);
-                }
+                conv.ask(frase_da_pronunciare);                
                 resolve();
             }                
         });
