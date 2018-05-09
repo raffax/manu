@@ -8,7 +8,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
 console.log("Initializing google");
-const app = actionssdk({debug: true});
+const app = actionssdk({debug: false});
 console.log("initialized google")
 //-------------------------------------------------------------------------------------
 // The checklist varianle contains all controls of the inspection.
@@ -16,15 +16,14 @@ console.log("initialized google")
 // NoSQL database documents in order to save control results (photo, comments, ratings) 
 //--------------------------------------------------------------------------------------
 var checklist=[
-                "the overall status of the foundation (absence of cracks in the concrete)",
-            "the general status inside the Ground Cabinet (fan filters, wires connections)",
-            "the general status of the UPS. Verify if works properly without any bypass",
-            "the general status of the lights in the tower sections",
-            "the tower section unions bolts marks",
-            "the status of the power loop cable (in the 2nd tower section)",
-            "the status of the lift clamping guides",
-            "the conditions of the Yaw sliding plates",
-            "GBX overall conditions (assess there is no crack or leakage)"
+        "lo stato generale della fondazione e l'assenza di fessure nel calcestruzzo.",
+        "le condizioni generali dell' armadio GROUND (collegamenti, filtri dell'aria).",
+        "lo stato dell'UPS (se funziona correttamente, non bypassato).",
+        "le condizioni dei filtri della porta di accesso alla turbina.",
+        "le condizioni generali dell'illuminazione nella turbina (sezioni e navicella).",
+        "il corretto contrassegno di coppia sugli elementi di fissaggio delle giunzioni tra le sezioni della torre.",
+        "lo stato del cavi del loop di alimentazione (nella sezione seconda torre).",
+        "lo stato delle guide di fissaggio dell'elevatore."        
 ];
 
 var previous=[3,1,4,2,3,3,1,3,4]; // simulate rates from prevous inspections;
@@ -133,6 +132,7 @@ function altre_conversazioni(conv,input) {
                 if(response.context.ispezione_iniziata<10) {
                     if(response.context.ispezione_iniziata==1) {
                         response.context.nn++;
+                        console.log("NN: "+nn);
                         if(response.context.nn<checklist.length) {  // go to next control 
         //                response.context.ispezione_iniziata=1;
                             response.context.current_step=checklist[response.context.nn];                
