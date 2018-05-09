@@ -132,7 +132,7 @@ function altre_conversazioni(conv,input) {
                 if(response.context.ispezione_iniziata<10) {
                     if(response.context.ispezione_iniziata==1) {
                         response.context.nn++;
-                        console.log("NN: "+nn);
+                        console.log("NN: "+response.context.nn + ", ISP_INIZIATA: "+response.context.ispezione_iniziata);
                         if(response.context.nn<checklist.length) {  // go to next control 
         //                response.context.ispezione_iniziata=1;
                             response.context.current_step=checklist[response.context.nn];                
