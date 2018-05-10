@@ -28,7 +28,6 @@ var checklist=[
 
 var previous=[3,1,4,2,3,3,1,3,4]; // simulate rates from prevous inspections;
 var last_date='May 18, 2017';
-var nn=0;   // pointer to current checklist step (replaced by response.context.nn)
 var frase_da_pronunciare="";
 var finisci=false;
 //---------------------------------------------
@@ -41,7 +40,8 @@ var initialContext={
     tempo:"",
     inspection: "si",
     ispezione_iniziata:0,
-    current_step:checklist[0]
+    current_step:checklist[0],
+    n_control:0
 };
 
 //---------------------------------------
@@ -79,6 +79,7 @@ function prima_conversazione(conv) {
                 }
                 else {
                     conv.data.ws_context=response.context;
+                    conv.data.ws_context.n_control=0;
                     var miafrase="";
                     for(var i = 0; i<response.output.text.length && i<3; i++) {
                         miafrase+=response.output.text[i]+". ";        
@@ -128,7 +129,11 @@ function altre_conversazioni(conv,input) {
                     }
                     console.log(frase_da_pronunciare);
                 }
-          
+                var nn=conv.data.ws_context.n_control;
+                if(isNaN(nn)) {
+                    nn=0;
+                    console.log("NN not defined...");
+                }
             //--------------------------------------
             // Check if ispezione terminata
             //--------------------------------------
@@ -153,6 +158,7 @@ function altre_conversazioni(conv,input) {
                     resolve();
                 }
                 conv.data.ws_context=response.context;
+                conv.data.ws_context.n_control=nn;
                 conv.ask(frase_da_pronunciare);                
                 resolve();
             }                
