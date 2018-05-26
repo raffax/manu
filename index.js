@@ -127,7 +127,7 @@ function altre_conversazioni(conv,input) {
                     for(var i = 0; i<response.output.text.length;i++) {
                         frase_da_pronunciare=response.output.text[i]+". ";        
                     }
-                    console.log(frase_da_pronunciare);
+                    console.log(frase_da_pronunciare);                    
                 }
                 var nn=conv.data.ws_context.n_control;
                 if(isNaN(nn)) {
@@ -159,7 +159,26 @@ function altre_conversazioni(conv,input) {
                 }
                 conv.data.ws_context=response.context;
                 conv.data.ws_context.n_control=nn;
-                conv.ask(frase_da_pronunciare);                
+                if (frase_da_pronunciare.indexOf('foto')>=0 &&
+                    conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) 
+                {
+// Create a basic card
+                    conv.ask(new BasicCard({
+                        text: frase_da_pronunciare+'  \nbreaks', 
+// Note the two spaces before '\n' required for a line break to be rendered in the card.
+                        subtitle: 'This is a subtitle',
+                        title: 'Title: this is a title',
+                        buttons: new Button({
+                            title: 'This is a button',
+                            url: 'https://assistant.google.com/',
+                        }),
+                        image: new Image({
+                            url: 'https://example.com/image.png',
+                            alt: 'Image alternate text',
+                        }),
+                    }));
+                }
+                else conv.ask(frase_da_pronunciare);                
                 resolve();
             }                
         });
