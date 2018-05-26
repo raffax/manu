@@ -166,24 +166,25 @@ function altre_conversazioni(conv,input) {
 // Create a basic card
                     console.log('====> Creo Basic Card');
                     conv.ask(new BasicCard({
-                        text: frase_da_pronunciare+'  \nbreaks', 
+                        text: frase_da_pronunciare, 
 // Note the two spaces before '\n' required for a line break to be rendered in the card.
-                        subtitle: 'This is a subtitle',
-                        title: 'Title: this is a title',
+                        subtitle: 'Sottotitolo',
+                        title: 'Titolo',
                         buttons: new Button({
-                            title: 'This is a button',
+                            title: 'Camera',
                             url: 'https://assistant.google.com/',
                         }),
                         image: new Image({
                             url: 'https://example.com/image.png',
-                            alt: 'Image alternate text',
+                            alt: 'Fotocamera',
                         }),
                     }));
                 }
                 else {
                     console.log('====> Creo semplice testo');
                     conv.ask(frase_da_pronunciare)
-                };                
+                }     
+                console.log("RESOLVING");           
                 resolve();
             }                
         });
