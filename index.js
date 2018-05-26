@@ -8,7 +8,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {actionssdk} = require('actions-on-google');
 console.log("Initializing google");
-const app = actionssdk({debug: false});
+const app = actionssdk({debug: true});
 console.log("initialized google")
 //-------------------------------------------------------------------------------------
 // The checklist varianle contains all controls of the inspection.
@@ -159,10 +159,12 @@ function altre_conversazioni(conv,input) {
                 }
                 conv.data.ws_context=response.context;
                 conv.data.ws_context.n_control=nn;
-                if (frase_da_pronunciare.indexOf('foto')>=0 &&
+                console.log('====> Controllo se mandare testo o basic card');
+                if (frase_da_pronunciare.indexOf('foto') >=0 &&
                     conv.surface.capabilities.has('actions.capability.SCREEN_OUTPUT')) 
                 {
 // Create a basic card
+                    console.log('====> Creo Basic Card');
                     conv.ask(new BasicCard({
                         text: frase_da_pronunciare+'  \nbreaks', 
 // Note the two spaces before '\n' required for a line break to be rendered in the card.
@@ -178,7 +180,10 @@ function altre_conversazioni(conv,input) {
                         }),
                     }));
                 }
-                else conv.ask(frase_da_pronunciare);                
+                else {
+                    console.log('====> Creo semplice testo');
+                    conv.ask(frase_da_pronunciare)
+                };                
                 resolve();
             }                
         });
