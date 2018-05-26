@@ -165,8 +165,9 @@ function altre_conversazioni(conv,input) {
                 {
 // Create a basic card
                     console.log('====> Creo Basic Card');
+                    conv.ask(frase_da_pronunciare);
                     conv.ask(new BasicCard({
-                        text: frase_da_pronunciare, 
+                        text: 'Clicca per scattare foto', 
 // Note the two spaces before '\n' required for a line break to be rendered in the card.
                         subtitle: 'Sottotitolo',
                         title: 'Titolo',
