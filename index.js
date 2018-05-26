@@ -8,7 +8,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {actionssdk,BasicCard,Button,Image} = require('actions-on-google');
 console.log("Initializing google");
-const app = actionssdk({debug: true});
+const app = actionssdk({debug: false});
 console.log("initialized google")
 //-------------------------------------------------------------------------------------
 // The checklist varianle contains all controls of the inspection.
