@@ -6,7 +6,7 @@ var watson = require('watson-developer-cloud');     // watson sdk
 const express = require('express');
 
 const bodyParser = require('body-parser');
-const {actionssdk,BasicCard} = require('actions-on-google');
+const {actionssdk,BasicCard,Button,Image} = require('actions-on-google');
 console.log("Initializing google");
 const app = actionssdk({debug: true});
 console.log("initialized google")
